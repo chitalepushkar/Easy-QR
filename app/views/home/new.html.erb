@@ -1,0 +1,12 @@
+<%= form_with scope: :home, url: :home_create, local: true do |form| %>
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text %>
+  </p>
+ 
+  <p>
+    <%= form.submit 'Generate QR' %>
+  </p>
+<% end %>
+
+<%= read_svg 'qr_image' %>

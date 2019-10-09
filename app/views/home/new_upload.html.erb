@@ -1,0 +1,5 @@
+<%= form_with scope: :home, url: :home_upload, local: true do |f| %>
+  <%= f.file_field :picture %>
+
+  <%= f.submit 'Scan QR image' %>
+<% end %>
