@@ -38,8 +38,7 @@ class HomeController < ApplicationController
     end
 
     path = "#{Rails.root}/public/uploads/#{uploaded_io.original_filename}"
-    img = ChunkyPNG::Image.from_file(path)
-    @qr_output = Quirc.decode(img).first&.payload
+    @qr_output = ZXing.decode(path)
   end
 
   def create_params
