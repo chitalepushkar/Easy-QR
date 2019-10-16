@@ -1,5 +1,17 @@
-<%= form_with scope: :home, url: :home_upload, local: true do |f| %>
-  <%= f.file_field :picture %>
+<div class="col">
+  <%= form_with scope: :home, url: :home_upload, local: false do |f| %>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <%= f.submit 'Scan QR image', class:"input-group-text"%>
+      </div>
+      <div class="custom-file">
+        <%= f.file_field :picture, class:"custom-file-input", id:"inputGroupFile01" %>
+        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-  <%= f.submit 'Scan QR image' %>
-<% end %>
+<div class="col">
+  <div id="qr_text">
+</div>

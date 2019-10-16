@@ -12,7 +12,7 @@ class HomeController < ApplicationController
   		qrcode = RQRCode::QRCode.new(create_params[:text])
 
   		# NOTE: showing with default options specified explicitly
-  		@qr_svg = qrcode.as_svg(
+  		qr_svg = qrcode.as_svg(
   		  offset: 0,
   		  color: '000',
   		  shape_rendering: 'crispEdges',
@@ -20,12 +20,16 @@ class HomeController < ApplicationController
   		  standalone: true
   		)
 
-      path = "#{Rails.root}/app/assets/images/qr_image.svg"
-      File.open(path, "w+") do |f|
-        f.write(@qr_svg)
+      @path = "#{Rails.root}/app/assets/images/qr_image.svg"
+      File.open(@path, "w+") do |f|
+        f.write(qr_svg)
       end
     end
-    render :new
+
+    respond_to do |format|
+      format.js
+      #format.json { render json: @path, status: :ok }
+    end
   end
 
   def new_upload
@@ -39,6 +43,10 @@ class HomeController < ApplicationController
 
     path = "#{Rails.root}/public/uploads/#{uploaded_io.original_filename}"
     @qr_output = ZXing.decode(path)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create_params
