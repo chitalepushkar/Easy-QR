@@ -1,7 +1,7 @@
 <div class="col">
   <%= form_with scope: :home, url: :home_create, local: false do |form| %>
     <div class="form-group">
-      <%= form.label "Enter text to convert to QR", for:"qrTextField"%>
+      <%= form.label :name, "Enter text to convert to QR", for:"qrTextField"%>
       <%= form.text_area :text, id:"qrTextField", class:"form-control" %>
     </div>
 
